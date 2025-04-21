@@ -50,21 +50,20 @@ def delete_session(session_name: str) -> None:
 
 @cli.command()
 @click.argument("session_name")
-def create_watch_tmux_session(session_name: str) -> None:
-    """Creates a paired tmux and watch session."""
-
-    session_exists = subprocess.run(
-        f"tmux has-session -t {session_name}", shell=True, stdout=subprocess.DEVNULL
-    )
-
-    if session_exists.returncode == 0:
-        click.echo(f"Tmux session: {session_name} already exists.")
-    else:
-        subprocess.run(f"tmux new-session -d -s {session_name}", shell=True)
-        subprocess.run(
-            f'tmux send-keys -t {session_name} "watch start {session_name}" C-m',
-            shell=True,
-        )
+def tmux(session_name: str) -> None:
+    """Coming soon."""
+    # session_exists = subprocess.run(
+    #     f"tmux has-session -t {session_name}", shell=True, stdout=subprocess.DEVNULL
+    # )
+    #
+    # if session_exists.returncode == 0:
+    #     click.echo(f"Tmux session: {session_name} already exists.")
+    # else:
+    #     subprocess.run(f"tmux new-session -d -s {session_name}", shell=True)
+    #     subprocess.run(
+    #         f'tmux send-keys -t {session_name} "watch start {session_name}" C-m',
+    #         shell=True,
+    #     )
 
 
 if __name__ == "__main__":
