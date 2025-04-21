@@ -40,5 +40,12 @@ def sessions() -> None:
         click.echo(f"{name}: {hours}h {mins}m {secs}s")
 
 
+@cli.command()
+@click.argument("session_name")
+def delete_session(session_name: str) -> None:
+    """Delete a specific session."""
+    SessionRepository.delete_session(session_name)
+
+
 if __name__ == "__main__":
     cli()
