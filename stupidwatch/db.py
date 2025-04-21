@@ -80,3 +80,13 @@ class SessionRepository:
         if row:
             return Session(name=row[0], total_seconds=row[1])
         return None
+
+    @staticmethod
+    def delete_session(session_name: str) -> None:
+        conn = SessionRepository.get_connection()
+        cur = conn.cursor()
+
+        cur.execute("DELETE FROM sessions WHERE name=?", (session_name,))
+
+        conn.commit()
+        conn.close()
